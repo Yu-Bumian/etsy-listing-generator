@@ -148,17 +148,30 @@ export default function Home() {
           </div>
         )}
 
-        {/* Affiliate / Promo Section */}
+       {/* Affiliate / Promo Section */}
         <div className="mt-12 pt-8 border-t border-gray-100 text-center">
           <p className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-6">
             Trusted Tools for Sellers
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <a href="#" className="group block p-4 bg-blue-50 hover:bg-blue-100 rounded-xl border border-blue-200 transition">
+            {/* ✅ EverBee: 填入您的专属链接 */}
+            <a 
+              href="https://www.everbee.io/?via=demin" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="group block p-4 bg-blue-50 hover:bg-blue-100 rounded-xl border border-blue-200 transition"
+            >
               <span className="block font-bold text-blue-900 group-hover:text-blue-700">EverBee 🐝</span>
               <span className="text-sm text-blue-600">Best for Product Research</span>
             </a>
-            <a href="#" className="group block p-4 bg-green-50 hover:bg-green-100 rounded-xl border border-green-200 transition">
+
+            {/* ⏳ Printful: 暂时填官网，等申请下来再换 */}
+            <a 
+              href="https://www.printful.com" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="group block p-4 bg-green-50 hover:bg-green-100 rounded-xl border border-green-200 transition"
+            >
               <span className="block font-bold text-green-900 group-hover:text-green-700">Printful 👕</span>
               <span className="text-sm text-green-600">Start POD Business</span>
             </a>
