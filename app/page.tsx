@@ -5,13 +5,13 @@ import { useState } from "react";
 export default function Home() {
   const [product, setProduct] = useState("");
   // 默认使用最安全的 Professional 语调
-  const [tone, setTone] = useState("Professional"); 
+  const [tone, setTone] = useState("Professional");
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<any>(null);
 
   const generateListing = async () => {
     if (!product) return alert("Please describe your product first.");
-    
+
     setLoading(true);
     setResult(null);
 
@@ -23,9 +23,9 @@ export default function Home() {
       });
 
       const data = await res.json();
-      
+
       if (!res.ok) throw new Error(data.error || "Request failed");
-      
+
       setResult(data);
     } catch (error: any) {
       alert("Error: " + error.message);
@@ -37,7 +37,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gray-50 p-6 font-sans">
       <div className="max-w-3xl mx-auto bg-white p-8 rounded-xl shadow-lg">
-        
+
         {/* Header Area */}
         <div className="text-center mb-10">
           <h1 className="text-4xl font-extrabold text-orange-600 mb-3 tracking-tight">
@@ -51,7 +51,7 @@ export default function Home() {
 
         {/* Input Area */}
         <div className="space-y-6">
-          
+
           {/* 1. Product Input */}
           <div>
             <label className="block text-sm font-bold text-gray-800 mb-2 uppercase tracking-wide">
@@ -85,7 +85,7 @@ export default function Home() {
               </select>
               {/* Custom Arrow Icon */}
               <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-700">
-                <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /></svg>
               </div>
             </div>
           </div>
@@ -110,7 +110,7 @@ export default function Home() {
         {/* Result Area */}
         {result && (
           <div className="mt-10 space-y-8 border-t pt-8 animate-fade-in">
-            
+
             {/* Title Section */}
             <div className="bg-orange-50 p-6 rounded-xl border border-orange-200 shadow-sm">
               <div className="flex justify-between items-center mb-2">
@@ -148,17 +148,17 @@ export default function Home() {
           </div>
         )}
 
-       {/* Affiliate / Promo Section */}
+        {/* Affiliate / Promo Section */}
         <div className="mt-12 pt-8 border-t border-gray-100 text-center">
           <p className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-6">
             Trusted Tools for Sellers
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {/* ✅ EverBee: 填入您的专属链接 */}
-            <a 
-              href="https://www.everbee.io/?via=demin" 
-              target="_blank" 
-              rel="noopener noreferrer" 
+            <a
+              href="https://www.everbee.io/?via=demin"
+              target="_blank"
+              rel="noopener noreferrer"
               className="group block p-4 bg-blue-50 hover:bg-blue-100 rounded-xl border border-blue-200 transition"
             >
               <span className="block font-bold text-blue-900 group-hover:text-blue-700">EverBee 🐝</span>
@@ -166,9 +166,9 @@ export default function Home() {
             </a>
 
             {/* ⏳ Printful: 暂时填官网，等申请下来再换 */}
-            <a 
-              href="https://www.printful.com" 
-              target="_blank" 
+            <a
+              href="https://www.printful.com/a/14118591:c394b4ff348f11288da1ed67db78689c"
+              target="_blank"
               rel="noopener noreferrer"
               className="group block p-4 bg-green-50 hover:bg-green-100 rounded-xl border border-green-200 transition"
             >
