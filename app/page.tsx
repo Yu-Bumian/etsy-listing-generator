@@ -81,6 +81,19 @@ export default function Home() {
               value={product}
               onChange={(e) => setProduct(e.target.value)}
             />
+            {/* Quick Start Chips */}
+            <div className="mt-3 flex flex-wrap gap-2">
+              <span className="text-xs font-semibold text-gray-500 uppercase tracking-wide self-center mr-1">Try:</span>
+              {["Ceramic Travel Mug", "Minimalist Digital Planner", "Vintage Leather Jacket"].map((item) => (
+                <button
+                  key={item}
+                  onClick={() => setProduct(item)}
+                  className="text-xs bg-gray-100 hover:bg-orange-100 text-gray-600 hover:text-orange-600 px-3 py-1.5 rounded-full transition-colors border border-gray-200"
+                >
+                  {item}
+                </button>
+              ))}
+            </div>
           </div>
 
           {/* 2. Tone Selector (Simplified) */}

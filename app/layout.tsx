@@ -1,3 +1,4 @@
+import Script from "next/script";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -8,10 +9,10 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   // 1. 网页标题 (包含核心关键词)
   title: "Free Etsy Description Generator | AI Listing Tool for Sellers",
-  
+
   // 2. 网页描述 (出现在搜索结果的灰色小字中，吸引点击)
   description: "Boost your Etsy sales with our free AI listing generator. Create SEO-optimized titles, tags, and product descriptions in seconds. No signup required.",
-  
+
   // 3. 关键词 (给搜索引擎的线索)
   keywords: [
     "Etsy description generator",
@@ -34,7 +35,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     siteName: "Etsy Listing Generator",
   },
-  
+
   // 6. 图标
   icons: {
     icon: '/favicon.ico',
@@ -50,6 +51,20 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         {children}
+
+        {/* Google Analytics */}
+        <Script
+          strategy="afterInteractive"
+          src="https://www.googletagmanager.com/gtag/js?id=G-W47F65LX0F"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-W47F65LX0F');
+          `}
+        </Script>
       </body>
     </html>
   );
