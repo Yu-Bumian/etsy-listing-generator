@@ -16,6 +16,15 @@ export default function Home() {
     }
   }, [result]);
 
+  const [copiedTags, setCopiedTags] = useState(false);
+
+  const handleCopyTags = () => {
+    if (!result?.tags) return;
+    navigator.clipboard.writeText(result.tags);
+    setCopiedTags(true);
+    setTimeout(() => setCopiedTags(false), 2000);
+  };
+
   const generateListing = async () => {
     if (!product) return alert("Please describe your product first.");
 
@@ -137,6 +146,21 @@ export default function Home() {
         {result && (
           <div className="mt-10 space-y-8 border-t pt-8 animate-fade-in">
 
+            {/* Category Section */}
+            {result.category && (
+              <div className="bg-purple-50 p-4 rounded-xl border border-purple-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 shadow-sm">
+                <div>
+                  <h3 className="font-bold text-purple-900 uppercase text-xs tracking-wider mb-1">Recommended Category</h3>
+                  <p className="text-purple-700 font-medium text-sm sm:text-base">
+                    {result.category}
+                  </p>
+                </div>
+                <span className="text-xs bg-purple-100 text-purple-600 px-2 py-1 rounded-full whitespace-nowrap">
+                  High Relevance
+                </span>
+              </div>
+            )}
+
             {/* Title Section */}
             <div className="bg-orange-50 p-6 rounded-xl border border-orange-200 shadow-sm">
               <div className="flex justify-between items-center mb-2">
@@ -188,7 +212,23 @@ export default function Home() {
             <div className="bg-gray-50 p-6 rounded-xl border border-gray-200 shadow-sm">
               <div className="flex justify-between items-center mb-3">
                 <h3 className="font-bold text-gray-500 uppercase text-xs tracking-wider">13 SEO Tags</h3>
-                <span className="text-xs text-gray-400">Copy & Paste</span>
+                <button
+                  onClick={handleCopyTags}
+                  className={`text-xs font-bold px-3 py-1.5 rounded-full transition-all flex items-center gap-1 ${copiedTags
+                    ? "bg-green-100 text-green-700 hover:bg-green-200"
+                    : "bg-gray-200 text-gray-600 hover:bg-gray-300"
+                    }`}
+                >
+                  {copiedTags ? (
+                    <>
+                      <span>✅</span> Copied!
+                    </>
+                  ) : (
+                    <>
+                      <span>📋</span> Copy All
+                    </>
+                  )}
+                </button>
               </div>
               <div className="flex flex-wrap gap-2">
                 {result.tags.split(',').map((tag: string, i: number) => (
