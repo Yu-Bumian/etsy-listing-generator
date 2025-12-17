@@ -184,15 +184,16 @@ export default function Home() {
             <div className="bg-orange-50 p-6 rounded-xl border border-orange-200 shadow-sm">
               <div className="flex justify-between items-center mb-2">
                 <h3 className="font-bold text-orange-900 uppercase text-xs tracking-wider">SEO Title</h3>
-                <span className={`text - xs font - bold px - 2 py - 1 rounded - full ${editableTitle.length > 140 ? "text-red-600 bg-red-100" : "text-gray-500 bg-orange-100"} `}>
+                <span className={`text-xs font-bold px-2 py-1 rounded-full ${editableTitle.length > 140 ? "text-red-600 bg-red-100" : "text-gray-500 bg-orange-100"
+                  }`}>
                   {editableTitle.length} / 140
                 </span>
               </div>
               <textarea
-                className={`w - full p - 3 rounded - lg text - gray - 900 font - medium text - lg leading - snug outline - none focus: ring - 2 transition resize - none ${editableTitle.length > 140
+                className={`w-full p-3 rounded-lg text-gray-900 font-medium text-lg leading-snug outline-none focus:ring-2 transition resize-none ${editableTitle.length > 140
                   ? "border-2 border-red-500 focus:ring-red-500 bg-white"
                   : "border border-orange-200 focus:ring-orange-500 bg-orange-50 hover:bg-white focus:bg-white"
-                  } `}
+                  }`}
                 rows={3}
                 value={editableTitle}
                 onChange={(e) => setEditableTitle(e.target.value)}
@@ -233,10 +234,10 @@ export default function Home() {
                 <h3 className="font-bold text-gray-500 uppercase text-xs tracking-wider">13 SEO Tags</h3>
                 <button
                   onClick={handleCopyTags}
-                  className={`text - xs font - bold px - 3 py - 1.5 rounded - full transition - all flex items - center gap - 1 ${copiedTags
-                    ? "bg-green-100 text-green-700 hover:bg-green-200"
-                    : "bg-gray-200 text-gray-600 hover:bg-gray-300"
-                    } `}
+                  className={`text-xs font-bold px-3 py-1.5 rounded-full transition-all flex items-center gap-1 ${copiedTags
+                      ? "bg-green-100 text-green-700 hover:bg-green-200"
+                      : "bg-gray-200 text-gray-600 hover:bg-gray-300"
+                    }`}
                 >
                   {copiedTags ? (
                     <>
