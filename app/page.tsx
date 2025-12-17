@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Home() {
   const [product, setProduct] = useState("");
@@ -8,12 +8,20 @@ export default function Home() {
   const [tone, setTone] = useState("Professional");
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<any>(null);
+  const [editableTitle, setEditableTitle] = useState("");
+
+  useEffect(() => {
+    if (result?.title) {
+      setEditableTitle(result.title);
+    }
+  }, [result]);
 
   const generateListing = async () => {
     if (!product) return alert("Please describe your product first.");
 
     setLoading(true);
     setResult(null);
+    setEditableTitle("");
 
     try {
       const res = await fetch("/api/generate", {
@@ -105,6 +113,24 @@ export default function Home() {
               "Generate Listing ✨"
             )}
           </button>
+
+          {/* Pro Tip Section */}
+          <div className="bg-blue-50 border-l-4 border-blue-500 p-4 my-6 rounded-r shadow-sm flex items-start gap-3">
+            <span className="text-xl flex-shrink-0">💡</span>
+            <div>
+              <p className="text-gray-800 font-medium">
+                Pro Tip: Want to find high-volume keywords your competitors are using?
+              </p>
+              <a
+                href="https://www.everbee.io/?via=demin"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block mt-1 font-bold underline text-blue-700 hover:text-blue-800 cursor-pointer"
+              >
+                Check Competitor Data with EverBee (Free Trial)
+              </a>
+            </div>
+          </div>
         </div>
 
         {/* Result Area */}
@@ -115,11 +141,39 @@ export default function Home() {
             <div className="bg-orange-50 p-6 rounded-xl border border-orange-200 shadow-sm">
               <div className="flex justify-between items-center mb-2">
                 <h3 className="font-bold text-orange-900 uppercase text-xs tracking-wider">SEO Title</h3>
-                <span className="text-xs text-orange-600 bg-orange-100 px-2 py-1 rounded-full">Max 140 chars</span>
+                <span className={`text-xs font-bold px-2 py-1 rounded-full ${editableTitle.length > 140 ? "text-red-600 bg-red-100" : "text-gray-500 bg-orange-100"}`}>
+                  {editableTitle.length} / 140
+                </span>
               </div>
-              <p className="text-gray-900 font-medium text-lg leading-snug select-all cursor-pointer hover:bg-orange-100 p-2 -mx-2 rounded transition">
-                {result.title}
-              </p>
+              <textarea
+                className={`w-full p-3 rounded-lg text-gray-900 font-medium text-lg leading-snug outline-none focus:ring-2 transition resize-none ${editableTitle.length > 140
+                  ? "border-2 border-red-500 focus:ring-red-500 bg-white"
+                  : "border border-orange-200 focus:ring-orange-500 bg-orange-50 hover:bg-white focus:bg-white"
+                  }`}
+                rows={3}
+                value={editableTitle}
+                onChange={(e) => setEditableTitle(e.target.value)}
+              />
+            </div>
+
+            {/* Printful Affiliate Section */}
+            <div className="mt-6 border border-gray-200 rounded-lg p-4 bg-gray-50 flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div>
+                <h4 className="font-semibold text-gray-800">
+                  Starting a new shop or need more products?
+                </h4>
+                <p className="text-sm text-gray-600">
+                  Create and sell custom products with zero inventory using Printful.
+                </p>
+              </div>
+              <a
+                href="https://www.printful.com/a/14118591:c394b4ff348f11288da1ed67db78689c"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded transition-colors whitespace-nowrap"
+              >
+                Start Free with Printful 👕
+              </a>
             </div>
 
             {/* Description Section */}
@@ -154,7 +208,7 @@ export default function Home() {
             Trusted Tools for Sellers
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {/* ✅ EverBee: 填入您的专属链接 */}
+            {/* ✅ EverBee */}
             <a
               href="https://www.everbee.io/?via=demin"
               target="_blank"
@@ -165,7 +219,7 @@ export default function Home() {
               <span className="text-sm text-blue-600">Best for Product Research</span>
             </a>
 
-            {/* ⏳ Printful: 暂时填官网，等申请下来再换 */}
+            {/* ⏳ Printful */}
             <a
               href="https://www.printful.com/a/14118591:c394b4ff348f11288da1ed67db78689c"
               target="_blank"
